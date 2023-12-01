@@ -1,0 +1,10 @@
+SELECT Orders.Date, 
+                 ProductCategory.CategoryName, 
+                 Products.ProdName, 
+                 Products.Price, 
+                 Orders.Quantity, 
+                  [Price]*[Quantity] AS [Total Sales], 
+                  Customers.CustomerEmail, 
+                  Customers.CustomerCity
+FROM ProductCategory 
+INNER JOIN (Products INNER JOIN (Customers INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID) ON Products.ProdNumber = Orders.ProdNumber) ON ProductCategory.CategoryID = Products.Category;
